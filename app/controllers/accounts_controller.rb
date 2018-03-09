@@ -1,8 +1,13 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /accounts
   # GET /accounts.json
+
+  def signed_in
+    redirect_to accounts_path
+  end
+
   def index
     @accounts = Account.all
   end
